@@ -1,0 +1,21 @@
+    1  dig +short cloudflare.com 
+    2  echo "8.8.8.8 google-dns" >> /etc/hosts
+    3  ping -c 2 google-dns
+    4  nc -zv google-dns 53 
+    5  cat /etc/resolv.conf
+    6  echo "nameserver 8.8.8.8" > /etc/resolv.conf
+    7  cat /etc/resolv.conf
+    8  dig +short cloudflare.com
+    9  apt update && apt install -y nginx
+   10  service nginx start
+   11  ps aux | grep nginx 
+   12  service nginx status 
+   13  netstat -tulpn | grep nginx 
+   14  nano /etc/nginx/sites-available/default
+   15  service nginx restart
+   16  netstat -tulpn | grep nginx
+   17  nano /var/www/html/index.nginx-debian.html
+   18  curl -s http://localhost:8080 | grep "<title>"
+   19  apt install -y curl
+   20  curl -s http://localhost:8080 | grep "<title>"
+   21  history > commands_tak1.txt
