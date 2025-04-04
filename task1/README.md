@@ -40,7 +40,7 @@ I used simple Linux tools to:
             104.16.133.229
             104.16.132.229
         
-        - ![Step 1 - DNS lookup](./screenshots/step1-dig-before-dns-change.png)
+        - ![Step 1 - DNS lookup](step1-dig-before-dns-change.png)
 
     Step 2: Map IP address 8.8.8.8 to hostname google-dns
     
@@ -61,7 +61,7 @@ I used simple Linux tools to:
                 --- google-dns ping statistics ---
                 2 packets transmitted, 2 received, 0% packet loss, time 1007ms
                 rtt min/avg/max/mdev = 21.698/23.475/25.253/1.777 ms
-        - ![Step 2 - Ping google-dns](./screenshots/step2-ping-google-dns.png)
+        - ![Step 2 - Ping google-dns](step2-ping-google-dns.png)
             
     Step 3: Check if the DNS Port is Open for google-dns
         - Now that `google-dns` points to `8.8.8.8`, I wanted to check if that IP has the DNS service running.DNS servers usually listen on port 53.To check if this port is open and accepting connections, I used a tool called `netcat` (`nc`).
@@ -70,7 +70,7 @@ I used simple Linux tools to:
         
         - What I got: Connection to google-dns (8.8.8.8) 53 port [tcp/*] succeeded! (this message means that port 53 is open, and the DNS service is working at that IP).
         
-        - ![Step 3 - Port 53 check](./screenshots/step3-nc-port53-success.png)
+        - ![Step 3 - Port 53 check](step3-nc-port53-success.png)
         
     Step 4: Change the system DNS to 8.8.8.8
         - In this step, I wanted to tell the system to use Google’s public DNS server (`8.8.8.8`) instead of the default one.Linux uses the file called `/etc/resolv.conf` to know which DNS server to use when looking up website names and I changed this file to point to Google's DNS server insetad of the default Docker DNS.
@@ -82,7 +82,7 @@ I used simple Linux tools to:
         - What I got: nameserver 8.8.8.8
         
         - Before and after `/etc/resolv.conf`:
-          ![Step 4 - DNS config](./screenshots/step4-resolvconf-before-after.png)
+          ![Step 4 - DNS config](step4-resolvconf-before-after.png)
         
         - How I tested it: i ran the same command as in step 1 to look up the IP of cloudflare.com - dig +short cloudflare.com
         
@@ -101,7 +101,7 @@ I used simple Linux tools to:
             -> The IP addresses are the same.The key difference is who provided the answer: before,it was Docker’s local DNS server (192.168.65.7), and after,it was Google’s DNS server (8.8.8.8). This shows that the system now successfully uses Google DNS.
             
             - DNS lookup after DNS change:
-            ![Step 4 - DNS lookup after](./screenshots/step4-dig-after-dns-change.png)
+            ![Step 4 - DNS lookup after](step4-dig-after-dns-change.png)
 
         
     Step 5: Install and verify that Nginx service is running
@@ -111,13 +111,13 @@ I used simple Linux tools to:
         
         - Then I started the server with : service nginx start
         
-        - ![Step 5 - Nginx started](./screenshots/step5-nginx-started.png)
+        - ![Step 5 - Nginx started](step5-nginx-started.png)
         
         - What I got : * Starting nginx nginx (the server was successfully started)
 
         - How I checked that it nginx is running: ps aux | grep nginx 
         
-        ![Step 5 - Nginx processes](./screenshots/step5-nginx-processes.png)
+        ![Step 5 - Nginx processes](step5-nginx-processes.png)
         
         - What I got: 
           root       729  0.0  0.0  10364  1524 ?        Ss   21:21   0:00 nginx: master process /usr/sbin/nginx
@@ -136,7 +136,7 @@ I used simple Linux tools to:
         
         - I also checked the service status : service nginx status (this confirmed me that nginx was active and running.)
         
-        ![Step 5 - Nginx status](./screenshots/step5-service-nginx-status.png)
+        ![Step 5 - Nginx status](step5-service-nginx-status.png)
         
     Step 6: Find the Listening Port for Nginx
         - After I installed and started Nginx, I wanted to check which port it was using to listen for incoming connections.By default, Nginx listens on port 80, which is the standard port for HTTP websites.
@@ -155,7 +155,7 @@ I used simple Linux tools to:
         * The second line shows that Nginx is also listening on port 80 for IPv6 connections (::: means all IPv6 addresses).
         * This confirms that Nginx is running and is correctly listening on the default HTTP port.
         
-        ![Step 6 - Netstat port 80](./screenshots/step6-netstat-port-80.png)
+        ![Step 6 - Netstat port 80](step6-netstat-port-80.png)
         
     Bonus: Change the Nginx listening port to 8080
     
@@ -175,8 +175,8 @@ I used simple Linux tools to:
                 listen 8080 default_server;
                 listen [::]:8080 default_server;
                 
-        ![Bonus - Changed port config](./screenshots/bonus-change-port-config80.png)
-        ![Bonus - Changed port config](./screenshots/bonus-change-port-config8080.png)
+        ![Bonus - Changed port config](bonus-change-port-config80.png)
+        ![Bonus - Changed port config](bonus-change-port-config8080.png)
                 
         * Then I restarted Nginx using - service nginx restart
         
@@ -190,7 +190,7 @@ I used simple Linux tools to:
 
         (this confirms that Nginx is now listening on port 8080 for both IPv4 and IPv6 connections.)
         
-        ![Step 6 - Netstat port 80](./screenshots/step6-netstat-port-80.png) 
+        ![Step 6 - Netstat port 80](step6-netstat-port-80.png) 
         
     Bonus: Change the default HTML page title in Nginx
     
@@ -206,7 +206,7 @@ I used simple Linux tools to:
             I used curl to see what the page returns: curl -s http://localhost:8080 | grep "<title>"
         - What I got : <title>I have completed the Linux part of the DevOps internship project</title>
         
-        -![Title updated](./screenshots/bonus-title-check-curl.png)
+        -![Title updated](bonus-title-check-curl.png)
         
 
 
