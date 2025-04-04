@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }} ./2-app
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }} ./task2
 
     - name: Push image to Docker Hub
       run: docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }}
