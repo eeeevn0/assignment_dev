@@ -12,22 +12,22 @@ I chose the Python application (calculator.py) for this task.
 
 -> What I did – Step by Step
   To containerize the application, I wrote a Dockerfile that sets up the environment, installs dependencies, and runs the application.
-  # for python image
+  for python image
   FROM python:3.9-slim
   
-  # the working directory will be inside the container
+  the working directory will be inside the container
   WORKDIR /app
   
-  # for the dependencies and the install them
+  for the dependencies and the install them
   COPY requirements.txt .
   RUN pip install --no-cache-dir -r requirements.txt
   
   COPY calculator.py .
   
-  # Expose port 8080
+  Expose port 8080
   EXPOSE 8080
 
-  # to run the app
+  to run the app
   CMD ["python", "calculator.py"]
 
     -> Local Testing
