@@ -1,16 +1,15 @@
-name: Build and Push Docker Image
+name: Build and Push Docker image
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Log in to Docker Hub
@@ -24,8 +23,9 @@ jobs:
         cd task2
         docker build -t ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }} .
 
-    - name: Push image
+    - name: Push Docker image
       run: |
         cd task2
         docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }}
+
 
