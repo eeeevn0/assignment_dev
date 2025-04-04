@@ -59,7 +59,7 @@ Task 3 - PostgreSQL Automation with Bash and Docker
         Step 4: Import the dataset
             - I copied the file populatedb.sql into the container.The script then runs the file using psql.
             - Command used:docker cp populatedb.sql postgres-company:/tmp/populatedb.sql psql -U ituser -d company_db -f /tmp/populatedb.sql
-            (This file creates 3 tables: departments, employees, and salaries.It also inserts sample data.)
+              -![Step 4] (step4.png)
             
         Step 5: Run SQL queries and save results
             - I created a file queries.sql with 3 queries:
