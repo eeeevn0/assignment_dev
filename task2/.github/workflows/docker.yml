@@ -21,10 +21,10 @@ jobs:
 
     - name: Build Docker image
       run: |
-        cd task2
+      cd task2
       docker build -t ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }} .
 
     - name: Push image to Docker Hub
       run: |
-        cd task2
+      cd task2
       docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }}
