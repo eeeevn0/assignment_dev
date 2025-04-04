@@ -90,8 +90,18 @@ I chose the Python application (calculator.py) for this task.
 
                               (GitHub-secrets.png)
 
+-> Problems I Faced:
+        While working on this task, I ran into a few issues. At first, the GitHub Actions workflow didn’t run because the docker.yml file was placed in the wrong folder (task2/.github/ instead of the main .github/ folder). After fixing that, the workflow failed due to incorrect indentation in the run: | block — YAML is very strict with spaces. Then, Docker login failed because I used my Docker Hub password instead of a personal access token, which is the recommended way. I also had some Git problems when trying to pull updates — the local and remote branches were different, and I had to deal with rebase conflicts and messages like “detached HEAD.” I solved them using commands like git rebase --abort, git checkout main, and git pull --rebase. During the rebase, I also got stuck in the Vim editor, so I changed the default Git editor to nano using git config --global core.editor "nano". These small challenges helped me learn a lot more about Git, GitHub Actions, and how to fix real errors during development.
 
+Some useful screenshots:
 
+->GitHub Actions – All Workflow Runs 
+![Workflow Runs](screenshot-workflow-runs.png) (this screenshot shows the history of workflow runs, including both failed and successful executions.)
+-> Successful GitHub Action Run
+![Workflow Success](screenshot-workflow-success.png)
+
+-> Docker Hub Repository
+![DockerHub Repo](screenshot-dockerhub-repo.png)
 
   
 
